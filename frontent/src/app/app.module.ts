@@ -13,6 +13,7 @@ import { SharedPaymentComponent } from './components/shared-payment/shared-payme
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { LockComponent } from './components/lock/lock.component';
 import { FloatButtonComponent } from './components/shared/float-button/float-button.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FloatButtonComponent } from './components/shared/float-button/float-but
   imports: [
     BrowserModule,
     FlexLayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
