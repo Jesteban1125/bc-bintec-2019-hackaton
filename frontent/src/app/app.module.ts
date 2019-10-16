@@ -16,6 +16,7 @@ import { WishListComponent } from './components/wish-list/wish-list.component';
 import { LockComponent } from './components/lock/lock.component';
 import { FloatButtonComponent } from './components/shared/float-button/float-button.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FlexLayoutModule,
     MatStepperModule,
     MatIconModule,

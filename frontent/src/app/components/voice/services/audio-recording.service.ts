@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import * as RecordRTC from 'recordrtc';
 import * as moment from 'moment';
 import { Subject, Observable } from 'rxjs';
-import * as AWS from 'aws-sdk';
-import { environment } from 'src/environments/environment';
+import { HttpClient, HttpEvent, HttpParams, HttpRequest, HttpResponse, HttpEventType } from '@angular/common/http';
+
 
 interface RecordedAudioOutput {
   blob: Blob;
@@ -21,25 +21,8 @@ export class AudioRecordingService {
   private _recorded = new Subject<RecordedAudioOutput>();
   private _recordingTime = new Subject<string>();
   private _recordingFailed = new Subject<string>();
-  private AWSService = AWS;
-  private s3;
 
-  constructor() {
-    this.settingAWS();
-  }
-
-  settingAWS() {
-    this.AWSService.config.update({
-      region: environment.region,
-      credentials: new this.AWSService.CognitoIdentityCredentials({
-        IdentityPoolId: environment.IdentityPoolId
-      })
-    });
-    this.s3 = new this.AWSService.S3({
-      apiVersion: '2006-03-01',
-      params: { Bucket: environment.bucketName }
-    });
-  }
+  constructor(private http: HttpClient) { }
 
   getRecordedBlob(): Observable<RecordedAudioOutput> {
     return this._recorded.asObservable();
@@ -110,10 +93,28 @@ export class AudioRecordingService {
     if (this.recorder) {
       this.recorder.stop((blob) => {
         if (this.startTime) {
-          const mp3Name = encodeURIComponent('audio_' + new Date().getTime() + '.mp3');
+          // const mp3Name = encodeURIComponent('pepe_' + new Date().getTime() + '.mp3');
+          const mp3Name = encodeURIComponent('pepe_.mp3');
           this.stopMedia();
-          this._recorded.next({ blob: blob, title: mp3Name });
-          this.addPhoto(blob);
+          this._recorded.next({ blob, title: mp3Name });
+          console.log('blob: ', blob);
+
+          this.addPhoto('http://34.206.72.191:5000/train', blob)
+            .subscribe(
+              event => {
+                if (event.type == HttpEventType.UploadProgress) {
+                  const percentDone = Math.round(100 * event.loaded / event.total);
+                  console.log(`File is ${percentDone}% loaded.`);
+                } else if (event instanceof HttpResponse) {
+                  console.log('File is completely loaded!');
+                }
+              },
+              (err) => {
+                console.log('Upload Error:', err);
+              }, () => {
+                console.log('Upload done');
+              }
+            );
         }
       }, () => {
         this.stopMedia();
@@ -122,44 +123,23 @@ export class AudioRecordingService {
     }
   }
 
-  private addPhoto(file) {
-    // this.s3.upload({ Key: file.name, Bucket: bucketName, Body: file, ACL: 'public-read' }, function (err, data) {
-    //   if (err) {
-    //     console.log(err, 'there was an error uploading your file');
-    //   }
-    // });
+  private addPhoto(url: string, file: File): Observable<HttpEvent<any>> {
 
-    // const upload = this.s3.upload({
-    //   params: {
-    //     Bucket: environment.bucketName,
-    //     Key: 'juanes',
-    //     Body: file,
-    //     ACL: 'public-read'
-    //   }
-    // }, (err, data) => {
-    //   console.log()
-    // });
+    // const formData = new FormData();
+    // formData.append('blob', file, 'pepe_2.mp3');
 
-    console.log(file);
-    const upload = new this.AWSService.S3.ManagedUpload({
-      params: {
-        Bucket: environment.bucketName,
-        Key: 'juanes.mp3',
-        Body: file,
-        ACL: 'public-read'
-      }
-    });
+    const fileOfBlob = new File([file], 'pepe_2.mp3');
+    // formData.append('upload', fileOfBlob);
 
-    const promise = upload.promise();
+    const params = new HttpParams();
 
-    promise.then(
-      data => {
-        console.log('Successfully uploaded photo.');
-      },
-      err => {
-        return console.error('There was an error uploading your photo: ', err.message);
-      }
-    );
+    const options = {
+      params,
+      reportProgress: true,
+    };
+
+    const req = new HttpRequest('POST', url, fileOfBlob, options);
+    return this.http.request(req);
   }
 
   private stopMedia() {

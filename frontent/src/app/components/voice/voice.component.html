@@ -8,8 +8,8 @@
     </div>
 
     <button class="btn-voice-recorder start-button" *ngIf="!isRecording && !blobUrl" (click)="startRecording()"><mat-icon>mic</mat-icon></button>
-    <button class="btn-voice-recorder stop-button" *ngIf="isRecording && !blobUrl" (click)="stopRecording()">Stop Recording</button>
-    <button class="btn-voice-recorder cancel-button" *ngIf="!isRecording && blobUrl" (click)="clearRecordedData()">Clear Recording</button>
+    <button class="btn-voice-recorder stop-button" *ngIf="isRecording && !blobUrl" (click)="stopRecording()"><mat-icon>stop</mat-icon></button>
+    <button class="btn-voice-recorder cancel-button" *ngIf="!isRecording && blobUrl" (click)="clearRecordedData()"><mat-icon>watch_later</mat-icon></button>
     <!-- <div *ngIf="isRecording && !blobUrl"> {{recordedTime}} </div> -->
 
     <div class="icon audio" *ngIf="isRecording && !blobUrl">
@@ -17,9 +17,9 @@
       <i></i>
     </div>
   </div>
-  <div>
+  <!-- <div>
     <audio *ngIf="!isRecording && blobUrl" controls>
       <source [src]="blobUrl" type="audio/webm">
     </audio>
-  </div>
+  </div> -->
 </div>
