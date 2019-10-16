@@ -1,1 +1,41 @@
-<p>shared-payment works!</p>
+<div fxLayout='column' class="container">
+  <div class="header" xFlex="100px" fxLayout="row" fxLayoutAlign="space-around center">
+      <div fxFlex="250px" fxLayout="row" fxLayoutAlign="end center">
+        <img fxFlex="150px" src="assets/images/login/logo.png" alt="logoBancolombia">
+      </div>
+      <img fxFlex="30px" src="assets/images/login/export.png" alt="logoBancolombia">
+  </div>
+  <div class="title" fxFlex="30px" fxLayout="row" fxLayoutAlign="center center">Pago conjunto</div>
+  <div fxLayout='column' *ngIf="!isPictureTaken;else checked">
+    <webcam
+          fxFlexOffset="10px" fxLayout='column' fxLayoutAlign="center center"
+          [width]="350"
+          [trigger]="triggerObservable"
+          (imageCapture)="handleImage($event)"
+          (initError)="handleInitError($event)"
+          [allowCameraSwitch]="true"
+          [imageQuality]="1"></webcam>
+
+    <div fxLayout='row' fxLayoutAlign="space-around center" fxFlexOffset="100px">
+      <button class="backArrow" mat-fab aria-label="back button">
+        <mat-icon>arrow_back_ios</mat-icon>
+      </button>
+      <button class="camera_take" fxFlexOffset="60px" mat-fab aria-label="take picture"
+              (click)="triggerSnapshot()">
+        <mat-icon>photo_camera</mat-icon>
+      </button>
+      <button class="camera" [disabled]="!multipleWebcamsAvailable" fxFlexOffset="60px" mat-fab aria-label="switch camera">
+        <mat-icon>flip_camera_ios</mat-icon>
+      </button>
+    </div>
+  </div>
+  <ng-template #checked>
+    <div fxLayout='column'>
+      holi
+    </div>
+  </ng-template>
+  
+  <div class="footer" fxLayout="row" fxLayoutAlign="center center">
+      <img src="assets/images/login/footer_logos.png" alt="">
+    </div>
+</div>
