@@ -18,6 +18,8 @@ import { LockComponent } from './components/lock/lock.component';
 import { FloatButtonComponent } from './components/shared/float-button/float-button.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
+import { CheckComponent } from './components/shared-payment/check/check.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -30,10 +32,12 @@ import {MatButtonModule} from '@angular/material/button';
     SharedPaymentComponent,
     WishListComponent,
     LockComponent,
-    FloatButtonComponent
+    FloatButtonComponent,
+    CheckComponent
   ],
   imports: [
     MatButtonModule,
+    MatCardModule,
     WebcamModule,
     BrowserModule,
     FlexLayoutModule,

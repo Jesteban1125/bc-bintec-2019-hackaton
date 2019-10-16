@@ -1,9 +1,8 @@
 <div fxLayout='column' class="container">
   <div class="header" xFlex="100px" fxLayout="row" fxLayoutAlign="space-around center">
-      <div fxFlex="250px" fxLayout="row" fxLayoutAlign="end center">
+      <div fxFlex="250px" fxLayout="row" fxLayoutAlign="center center">
         <img fxFlex="150px" src="assets/images/login/logo.png" alt="logoBancolombia">
       </div>
-      <img fxFlex="30px" src="assets/images/login/export.png" alt="logoBancolombia">
   </div>
   <div class="title" fxFlex="30px" fxLayout="row" fxLayoutAlign="center center">Pago conjunto</div>
   <div fxLayout='column' *ngIf="!isPictureTaken;else checked">
@@ -30,11 +29,21 @@
     </div>
   </div>
   <ng-template #checked>
-    <div fxLayout='column'>
-      holi
+    <div>
+      <app-check></app-check>
+      <div  fxLayout='column' fxLayoutAlign="space-around center">
+        <div fxLayout='row' fxFlex="50px" fxFlexOffset="10px" fxLayoutAlign="space-between center" 
+                class="our_card" *ngFor="let face of faces">
+          <div class="info-account" fxLayout='column'>
+            <div>{{face.name}}</div>
+            <div>{{face.date}}</div>
+          </div>
+          <div>{{face.value | currency}}</div>
+        </div>
+      </div>
     </div>
   </ng-template>
-  
+
   <div class="footer" fxLayout="row" fxLayoutAlign="center center">
       <img src="assets/images/login/footer_logos.png" alt="">
     </div>

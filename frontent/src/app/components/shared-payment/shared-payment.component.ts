@@ -1,9 +1,9 @@
+import { FacesTRXService } from './../../services/faces-trx.service';
 import { Component, OnInit } from '@angular/core';
 import { WebcamInitError, WebcamUtil, WebcamImage } from 'ngx-webcam';
 import { Subject } from 'rxjs/internal/Subject';
 import { Observable } from 'rxjs/internal/Observable';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shared-payment',
@@ -15,8 +15,10 @@ export class SharedPaymentComponent implements OnInit {
   public multipleWebcamsAvailable = false;
   public webcamImage: WebcamImage = null;
   public isPictureTaken = false;
+  public faces = null;
 
-  constructor( private location: Location, private router: Router) { }
+  constructor(private location: Location,
+              private serviceFace: FacesTRXService) { }
 
   ngOnInit() {
     WebcamUtil.getAvailableVideoInputs()
@@ -42,6 +44,8 @@ export class SharedPaymentComponent implements OnInit {
     console.log('received webcam image', webcamImage);
     this.webcamImage = webcamImage;
     this.isPictureTaken = true;
+    this.faces = this.serviceFace.getFriends();
+    console.log(this.faces);
   }
 
   navigateBack() {
