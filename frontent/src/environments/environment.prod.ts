@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  region: 'us-east-1',
+  bucketName: 'dummy',
+  IdentityPoolId: 'dummy',
 };

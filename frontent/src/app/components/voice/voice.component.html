@@ -1,1 +1,25 @@
-<p>voice works!</p>
+<div class="container">
+  <h2>Por favor grabate diciendo una palabra clave</h2>
+  <p>Puedes elegir cualquier palabra que desees</p>
+  <div fxLayout="row" fxLayoutAlign="center stretch">
+    <div class="icon audio" *ngIf="isRecording && !blobUrl">
+      <i></i>
+      <i></i>
+    </div>
+
+    <button class="btn-voice-recorder start-button" *ngIf="!isRecording && !blobUrl" (click)="startRecording()"><mat-icon>mic</mat-icon></button>
+    <button class="btn-voice-recorder stop-button" *ngIf="isRecording && !blobUrl" (click)="stopRecording()">Stop Recording</button>
+    <button class="btn-voice-recorder cancel-button" *ngIf="!isRecording && blobUrl" (click)="clearRecordedData()">Clear Recording</button>
+    <!-- <div *ngIf="isRecording && !blobUrl"> {{recordedTime}} </div> -->
+
+    <div class="icon audio" *ngIf="isRecording && !blobUrl">
+      <i></i>
+      <i></i>
+    </div>
+  </div>
+  <div>
+    <audio *ngIf="!isRecording && blobUrl" controls>
+      <source [src]="blobUrl" type="audio/webm">
+    </audio>
+  </div>
+</div>
