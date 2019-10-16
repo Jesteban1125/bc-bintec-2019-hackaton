@@ -1,0 +1,42 @@
+.container {
+  .header {
+    background-color: #073d80;
+    div img:first-child {
+      height: 60px;
+    }
+    img:last-child {
+      height: 30px;
+    }
+  }
+  div:nth-child(2) {
+    background-color: #fed200;
+  }
+  .user-input {
+    div {
+      border: 1px solid rgb(224, 224, 224);
+      border-radius: 5px;
+      padding: 5px 5px;
+      height: 50px;
+      img {
+        width: 30px;
+      }
+      input {
+        font-size: 15px;
+        width: 100%;
+        &::placeholder {
+          color: gray;
+          opacity: 1;
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+  .btn-continuar {
+    img {
+      width: 170px;
+    }
+  }
+}
+
