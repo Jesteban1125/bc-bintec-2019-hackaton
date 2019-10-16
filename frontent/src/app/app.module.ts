@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
+import {WebcamModule} from 'ngx-webcam';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { WishListComponent } from './components/wish-list/wish-list.component';
 import { LockComponent } from './components/lock/lock.component';
 import { FloatButtonComponent } from './components/shared/float-button/float-button.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FloatButtonComponent
   ],
   imports: [
+    MatButtonModule,
+    WebcamModule,
     BrowserModule,
     FlexLayoutModule,
     MatStepperModule,
