@@ -1,0 +1,68 @@
+.obc-onboarding-container {
+  background-color: #171e3a;
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+::ng-deep .obc-onboarding {
+  font-family: 'Nunito', 'Open Sans', 'Roboto', 'Helvetica Neue', sans-serif !important;
+  background-color: transparent;
+  .mat-horizontal-stepper-header-container {
+    bottom: 0;
+    position: absolute;
+    align-items: center !important;
+
+    .mat-horizontal-stepper-header {
+      padding: 0;
+
+      &::before, &::after {
+        border-top-width: 0 !important;
+      }
+
+      .mat-step-icon {
+        height: 8px;
+        width: 8px;
+        background-color: #989898;
+        color: transparent;
+      }
+
+      .mat-step-icon-selected {
+        height: 13px;
+        width: 13px;
+        background-color: #fdfdfd;
+        color: transparent;
+      }
+    }
+
+  }
+
+  .mat-horizontal-content-container {
+    width: 100%;
+    text-align: center;
+    .obc-header {
+      text-align: right;
+      button {
+        padding: 18px 0;
+        color: white;
+        font-weight: bold;
+        font-size: 0.8rem;
+      }
+    }
+    .obc-body {
+      .image {
+        .mat-icon {
+          margin-top: 12vh;
+          font-size: 8rem;
+          width: 100%;
+          height: 100%;
+          color: #fff;
+        }
+      }
+      p {
+        padding-top: 8vh;
+      }
+    }
+  }
+}
