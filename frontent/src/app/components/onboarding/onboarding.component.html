@@ -1,1 +1,73 @@
-<p>onboarding works!</p>
+<div class="obc-onboarding-container">
+  <mat-horizontal-stepper labelPosition="bottom" class="obc-onboarding" #stepper fxLayout="row" fxLayoutAlign="center center" >
+    <ng-template matStepperIcon="edit">
+      <mat-icon>done</mat-icon>
+    </ng-template>
+
+    <mat-step>
+      <div class="obc-header">
+        <button mat-button mat-flat-button matStepperNext>Siguiente</button>
+      </div>
+      <div class="obc-body">
+        <div class="image">
+          <mat-icon>record_voice_over</mat-icon>
+        </div>
+        <p>
+          Ahora en la app Bancolombia podrás asociar tu voz y disfrutar de nuevos beneficios como consultar tu saldo y hacer transferencias.
+          <br />
+          Y lo mejor de todo,
+          <br />
+          ¡Sin tocar tu dispositivo!
+          <br />
+          Solo con tu voz
+        </p>
+      </div>
+    </mat-step>
+    <mat-step>
+      <div class="obc-header">
+        <button mat-button mat-flat-button matStepperNext>Siguiente</button>
+      </div>
+      <div class="obc-body">
+        <div class="image">
+          <mat-icon>face</mat-icon>
+        </div>
+        <p>
+          También hemos añadido opciones de reconocimiento facial, que ademas de brindarte mas seguridad, hará más fácil tu vida al hacer de tareas tediosas y aburridas, algo genial.
+          <br />
+          ¡Como dividir la cuenta de la cena entre amigos con tan solo una foto!
+        </p>
+      </div>
+    </mat-step>
+    <mat-step>
+      <div class="obc-header">
+        <button mat-button mat-flat-button matStepperNext>Siguiente</button>
+      </div>
+      <div class="obc-body">
+        <div class="image">
+          <mat-icon>card_giftcard</mat-icon>
+        </div>
+        <p>
+          Y como en Bancolombia queremos estar junto a ti y ayudarte a cumplir tus sueños, ahora podrás compartirnos eso que tanto deseas con tan solo una foto.
+          <br />
+          ¡Y haremos todo lo posible por acompañarte en el proceso!
+        </p>
+      </div>
+    </mat-step>
+    <mat-step>
+      <div class="obc-header">
+        <button mat-button mat-flat-button matStepperNext>Siguiente</button>
+      </div>
+      <div class="obc-body">
+        <div class="image pointer" [routerLink]="['/voice']">
+          <mat-icon>record_voice_over</mat-icon>
+          <span>Quiero registrar mi voz</span>
+        </div>
+        <div class="image pointer" [routerLink]="['/face']">
+          <mat-icon>face</mat-icon>
+          <span>Quiero registrar mi rostro</span>
+        </div>
+      </div>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+</div>
