@@ -1,1 +1,16 @@
-<p>home works!</p>
+<div fxLayout='column' class="container">
+  <div class="header" xFlex="100%" fxLayout="row" fxLayoutAlign="space-around center">
+      <div fxFlex="100%" fxLayout="row" fxLayoutAlign="center center">
+        <img fxFlex="100%" src="assets/images/home/home_header.png" alt="logoBancolombia">
+      </div>
+  </div>
+  <div fxLayout='row' fxFlex="130px" fxLayoutAlign="end end">
+    <button [routerLink]="'/menu'"
+            mat-fab aria-label="Example icon-button with a heart icon">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <div class="footer" fxLayout="row" fxLayoutAlign="center center">
+    <img src="assets/images/login/footer_logos.png" alt="">
+  </div>
+</div>
