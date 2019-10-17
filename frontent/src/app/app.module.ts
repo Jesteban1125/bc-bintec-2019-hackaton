@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
-import {WebcamModule} from 'ngx-webcam';
+import { WebcamModule } from 'ngx-webcam';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +17,8 @@ import { WishListComponent } from './components/wish-list/wish-list.component';
 import { LockComponent } from './components/lock/lock.component';
 import { FloatButtonComponent } from './components/shared/float-button/float-button.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
 import { CheckComponent } from './components/shared-payment/check/check.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
@@ -44,6 +45,7 @@ import { CheckedComponent } from './components/face/checked/checked.component';
     MatCardModule,
     WebcamModule,
     BrowserModule,
+    HttpClientModule,
     FlexLayoutModule,
     MatStepperModule,
     MatIconModule,

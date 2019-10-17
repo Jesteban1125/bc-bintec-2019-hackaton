@@ -1,0 +1,17 @@
+{
+  "catalogName": "TIPOS_CNB",
+  "items": [
+   {
+     "code":"TRADICIONAL",
+     "name":"Tradicional"
+   },
+   {
+     "code":"RETAIL",
+     "name":"Retail"
+   },
+   {
+     "code":"ROBUSTO",
+     "name":"Robusto"
+   }
+  ]
+}

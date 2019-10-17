@@ -1,0 +1,16 @@
+{
+  "catalogName": "GRANT_TYPES",
+  "items": [
+    {
+      "inputParams": [
+        "cognitoPoolId",
+        "cognitoClientId",
+        "secondFactorService"
+      ],
+      "userServiceProvide": "COGNITO_USUARIOS"
+    },
+    {
+      "userServiceProvide": "ADM_USUARIOS"
+    }
+  ]
+}

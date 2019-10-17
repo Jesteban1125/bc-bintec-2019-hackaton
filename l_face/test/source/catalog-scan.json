@@ -1,0 +1,26 @@
+{
+    "Items":
+    [
+        {
+            "catalogName": "TIPOS_DOCUMENTO"
+        },
+        {
+            "catalogName": "COLLECTIONS"
+        },
+        {
+            "catalogName": "TRANSACCIONES_CNB"
+        },
+        {
+            "catalogName": "GRANT_TYPES"
+        },
+        {
+            "catalogName": "PROVINCIAS"
+        },
+        {
+            "catalogName": "GRANT_TYPES_TEST"
+        },
+        {
+            "catalogName": "TIPOS_CNB"
+        }
+    ]
+}

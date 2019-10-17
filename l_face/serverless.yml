@@ -1,0 +1,183 @@
+service: catalogs
+
+plugins:
+  - serverless-plugin-log-subscription
+
+custom:
+    logSubscription:
+        enabled: true
+        filterName: catalogs-${opt:stage}
+        destinationArn: arn:aws:lambda:${opt:region}:${opt:account}:function:logs-to-elasticsearch-${opt:stage}-cloudwatch-logs-to-elasticsearch
+        filterPattern: "{$.timestamp != \"\"}"
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: ${opt:stage}
+  region: ${opt:region}
+  timeout: 10
+  memorySize: 128
+  deploymentBucket:
+    name: serverless-deployment-${opt:stage}
+  iamRoleStatements:
+      - Effect: Allow
+        Action:
+            - dynamodb:*
+        Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${opt:stage}-catalogs"
+  apiGateway:
+    restApiId:
+      'Fn::ImportValue': core-api-ApiID
+    restApiRootResourceId:
+      'Fn::ImportValue': core-api-TechnicalID
+
+functions:
+  catalogs:
+    handler: index.handler
+    description: cross-microservice for catalog's management and querys.
+    events:
+      - http:
+          path: catalogs/{catalogName}
+          method: put
+          integration: lambda
+          authorizer:
+            name: ${self:service}-authorizer
+            arn: arn:aws:lambda:${opt:region}:${opt:account}:function:authorizer-${opt:stage}-authorizer
+            resultTtlInSeconds: 0
+            type: request
+          request:
+            passThrough: WHEN_NO_TEMPLATES
+            parameters:
+              paths:
+                catalogName: true
+          response:
+            headers:
+              Content-Type: "'application/json'"
+            statusCodes:
+                200:
+                    pattern: ''
+                201:
+                    patern: '.*"statusCode":201.*'
+                400:
+                    pattern: '.*"statusCode":400.*'
+                    headers:
+                      Content-Type: "'application/json'"
+                    template: "$input.path('$.errorMessage')"
+      - http:
+          path: catalogs/{catalogName}
+          method: delete
+          integration: lambda
+          authorizer:
+            name: ${self:service}-authorizer
+            arn: arn:aws:lambda:${opt:region}:${opt:account}:function:authorizer-${opt:stage}-authorizer
+            resultTtlInSeconds: 0
+            type: request
+          request:
+            passThrough: WHEN_NO_TEMPLATES
+            parameters:
+              paths:
+                catalogName: true
+          response:
+            headers:
+              Content-Type: "'application/json'"
+            statusCodes:
+                200:
+                    pattern: ''
+                404:
+                    pattern: '.*"statusCode":404.*'
+                    headers:
+                      Content-Type: "'application/json'"
+                    template: "$input.path('$.errorMessage')"
+      - http:
+          path: catalogs
+          method: get
+          integration: lambda
+          authorizer:
+            name: ${self:service}-authorizer
+            arn: arn:aws:lambda:${opt:region}:${opt:account}:function:authorizer-${opt:stage}-authorizer
+            resultTtlInSeconds: 0
+            type: request
+          request:
+            passThrough: WHEN_NO_TEMPLATES
+          response:
+            headers:
+              Content-Type: "'application/json'"
+            statusCodes:
+                200:
+                    pattern: ''
+                404:
+                    pattern: '.*"statusCode":404.*'
+                    headers:
+                      Content-Type: "'application/json'"
+                    template: "$input.path('$.errorMessage')"
+      - http:
+          path: catalogs
+          method: post
+          integration: lambda
+          authorizer:
+            name: ${self:service}-authorizer
+            arn: arn:aws:lambda:${opt:region}:${opt:account}:function:authorizer-${opt:stage}-authorizer
+            resultTtlInSeconds: 0
+            type: request
+          request:
+            passThrough: WHEN_NO_TEMPLATES
+          response:
+            headers:
+              Content-Type: "'application/json'"
+            statusCodes:
+                201:
+                    pattern: '.*"statusCode":201.*'
+                422:
+                    pattern: '.*"statusCode":422.*'
+                    headers:
+                      Content-Type: "'application/json'"
+                    template: "$input.path('$.errorMessage')"
+      - http:
+          path: catalogs/{catalogName}
+          method: get
+          integration: lambda
+          authorizer:
+            name: ${self:service}-authorizer
+            arn: arn:aws:lambda:${opt:region}:${opt:account}:function:authorizer-${opt:stage}-authorizer
+            resultTtlInSeconds: 0
+            type: request
+          request:
+            passThrough: WHEN_NO_TEMPLATES
+            parameters:
+              paths:
+                catalogName: true
+          response:
+            headers:
+              Content-Type: "'application/json'"
+            statusCodes:
+                200:
+                    pattern: ''
+                404:
+                    pattern: '.*"statusCode":404.*'
+                    headers:
+                      Content-Type: "'application/json'"
+                    template: "$input.path('$.errorMessage')"
+    environment:
+      TABLE_NAME: ${opt:stage}-catalogs
+      LOGGER_ROOT_LEVEL: DEBUG
+resources:
+  Resources:
+    LambdaInvokePermission:
+        Type: AWS::Lambda::Permission
+        Properties:
+            FunctionName: arn:aws:lambda:${opt:region}:${opt:account}:function:logs-to-elasticsearch-${opt:stage}-cloudwatch-logs-to-elasticsearch
+            Action: lambda:*
+            Principal: logs.us-east-1.amazonaws.com
+            SourceArn: arn:aws:logs:${opt:region}:${opt:account}:log-group:/aws/lambda/catalogs-${opt:stage}-catalogs:*
+            SourceAccount: ${opt:account}
+    DynamoDbTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${opt:stage}-catalogs
+        AttributeDefinitions:
+          - AttributeName: catalogName
+            AttributeType: S
+        KeySchema:
+          - AttributeName: catalogName
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5

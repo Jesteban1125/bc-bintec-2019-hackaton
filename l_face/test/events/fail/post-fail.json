@@ -1,0 +1,18 @@
+{
+    "body": {
+        "catalogName": "GRANT_TYPES_TEST",
+        "items": [
+            {
+                "userServiceProvide": "ADM_USUARIOS"
+            }
+        ]
+    },
+    "method": "POST",
+    "principalId": "",
+    "stage": "acndev",
+    "headers": {
+        "X-Amzn-Trace-Id": "Root=1-5aa2d221-69f5c810295f7c40473b7248"
+    },
+    "query": {},
+    "path": {}
+}

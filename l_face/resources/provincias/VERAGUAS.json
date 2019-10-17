@@ -1,0 +1,41 @@
+{
+  "catalogName": "PA-9",
+  "items": [
+    {
+      "name": "Atalaya"
+    },
+    {
+      "name": "Calobre"
+    },
+    {
+      "name": "Cañazas"
+    },
+    {
+      "name": "La Mesa"
+    },
+    {
+      "name": "Las Palmas"
+    },
+    {
+      "name": "Mariato"
+    },
+    {
+      "name": "Montijo"
+    },
+    {
+      "name": "Río de Jesús"
+    },
+    {
+      "name": "San Francisco"
+    },
+    {
+      "name": "Santa Fe"
+    },
+    {
+      "name": "Santiago"
+    },
+    {
+      "name": "Soná"
+    }
+  ]
+}

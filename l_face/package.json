@@ -1,0 +1,26 @@
+{
+  "name": "dev-catalog-corporation",
+  "version": "1.0.0",
+  "description": "Catalogs microservice for Banistmo",
+  "main": "index.js",
+  "scripts": {
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -R ./test/*.js",
+    "test": "mocha --reporter=nyan"
+  },
+  "author": "Accenture",
+  "license": "ISC",
+  "dependencies": {
+    "dynamodb-doc": "^1.0.0",
+    "json-schema": "^0.2.3",
+    "scg-ms-logs-node": "^1.0.5",
+    "serverless-plugin-log-subscription": "^1.2.0"
+  },
+  "devDependencies": {
+    "aws-sdk-mock": "^1.7.0",
+    "chai": "^4.1.2",
+    "istanbul": "^0.4.5",
+    "lambda-tester": "^3.2.0",
+    "mocha": "^5.0.4",
+    "path": "^0.12.7"
+  }
+}
