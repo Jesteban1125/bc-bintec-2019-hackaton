@@ -1,25 +1,69 @@
-<div class="container">
-  <h2>Por favor grabate diciendo una palabra clave</h2>
-  <p>Puedes elegir cualquier palabra que desees</p>
-  <div fxLayout="row" fxLayoutAlign="center stretch">
-    <div class="icon audio" *ngIf="isRecording && !blobUrl">
-      <i></i>
-      <i></i>
-    </div>
-
-    <button class="btn-voice-recorder start-button" *ngIf="!isRecording && !blobUrl" (click)="startRecording()"><mat-icon>mic</mat-icon></button>
-    <button class="btn-voice-recorder stop-button" *ngIf="isRecording && !blobUrl" (click)="stopRecording()"><mat-icon>stop</mat-icon></button>
-    <button class="btn-voice-recorder cancel-button" *ngIf="!isRecording && blobUrl" (click)="clearRecordedData()"><mat-icon>watch_later</mat-icon></button>
-    <!-- <div *ngIf="isRecording && !blobUrl"> {{recordedTime}} </div> -->
-
-    <div class="icon audio" *ngIf="isRecording && !blobUrl">
-      <i></i>
-      <i></i>
+<div fxLayout='column' class="container">
+  <div class="header" xFlex="100px" fxLayout="row" fxLayoutAlign="space-around center">
+    <div fxFlex="250px" fxLayout="row" fxLayoutAlign="center center">
+      <img fxFlex="150px" src="assets/images/login/logo.png" alt="logoBancolombia">
     </div>
   </div>
-  <!-- <div>
-    <audio *ngIf="!isRecording && blobUrl" controls>
-      <source [src]="blobUrl" type="audio/webm">
-    </audio>
-  </div> -->
+  <div class="title" fxFlex="30px" fxLayout="row" fxLayoutAlign="center center">Pago conjunto</div>
+  <div fxLayout='column' class="nunito" *ngIf="!steps[2]">
+    <h2>Por favor grabate diciendo una palabra clave</h2>
+    <p>
+      Puedes elegir cualquier palabra que desees
+      <small *ngIf="!steps[0]">&nbsp;</small>
+      <small *ngIf="steps[0] && !steps[1]">Ya casi, lo logramos, dilo de nuevo</small>
+      <small *ngIf="steps[1]">...una última vez</small>
+    </p>
+    <div fxLayout="row" fxLayoutAlign="center stretch">
+        <div class="icon audio" *ngIf="isRecording && !blobUrl">
+          <i></i>
+          <i></i>
+        </div>
+
+        <button class="btn-voice-recorder start-button" *ngIf="!isRecording && !blobUrl" (click)="startRecording()">
+          <mat-icon>mic</mat-icon>
+        </button>
+        <button class="btn-voice-recorder stop-button" *ngIf="isRecording && !blobUrl" (click)="stopRecording()">
+          <mat-icon>stop</mat-icon>
+        </button>
+        <button class="btn-voice-recorder cancel-button" *ngIf="!isRecording && blobUrl && loading">
+          <mat-icon>watch_later</mat-icon>
+        </button>
+        <!-- <div *ngIf="isRecording && !blobUrl"> {{recordedTime}} </div> -->
+
+        <div class="icon audio" *ngIf="isRecording && !blobUrl">
+          <i></i>
+          <i></i>
+        </div>
+
+      <div class="voice-step">
+        <mat-icon *ngIf="!steps[0]">radio_button_unchecked</mat-icon>
+        <mat-icon *ngIf="steps[0]">radio_button_checked</mat-icon>
+        <mat-icon *ngIf="!steps[1]">radio_button_unchecked</mat-icon>
+        <mat-icon *ngIf="steps[1]">radio_button_checked</mat-icon>
+        <mat-icon *ngIf="!steps[2]">radio_button_unchecked</mat-icon>
+        <mat-icon *ngIf="steps[2]">radio_button_checked</mat-icon>
+      </div>
+    </div>
+    <!-- <div>
+        <audio *ngIf="!isRecording && blobUrl" controls>
+          <source [src]="blobUrl" type="audio/webm">
+        </audio>
+      </div> -->
+  </div>
+
+  <div fxLayout='column' class="nunito" *ngIf="steps[2]">
+    <h2>¡Buen trabajo!</h2>
+    <p>
+      Ya puedes disfrutar de beneficios usando solo tu voz
+    </p>
+    <div fxLayout="row" fxLayoutAlign="center stretch">
+      <button class="btn-voice-recorder start-button" [routerLink]="['/home']">
+        <mat-icon>sentiment_satisfied_alt</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="footer" fxLayout="row" fxLayoutAlign="center center">
+    <img src="assets/images/login/footer_logos.png" alt="">
+  </div>
 </div>

@@ -11,6 +11,8 @@ export class VoiceComponent implements OnDestroy {
   isRecording = false;
   recordedTime;
   blobUrl;
+  loading = false;
+  steps;
 
   constructor(private audioRecordingService: AudioRecordingService, private sanitizer: DomSanitizer) {
 
@@ -22,9 +24,25 @@ export class VoiceComponent implements OnDestroy {
       this.recordedTime = time;
     });
 
+    this.audioRecordingService.getLoading().subscribe((status) => {
+      this.loading = status;
+      this.blobUrl = null;
+    });
+
     this.audioRecordingService.getRecordedBlob().subscribe((data) => {
       this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(data.blob));
+      if (this.steps[0] && this.steps[1] && !this.steps[2]) {
+        this.steps[2] = 1;
+      }
+      if (this.steps[0] && !this.steps[1]) {
+        this.steps[1] = 1;
+      }
+      if (!this.steps[0]) {
+        this.steps[0] = 1;
+      }
     });
+
+    this.steps = [0, 0, 0];
   }
 
   startRecording() {

@@ -21,6 +21,7 @@ export class AudioRecordingService {
   private _recorded = new Subject<RecordedAudioOutput>();
   private _recordingTime = new Subject<string>();
   private _recordingFailed = new Subject<string>();
+  private _loading = new Subject<boolean>();
 
   constructor(private http: HttpClient) { }
 
@@ -34,6 +35,10 @@ export class AudioRecordingService {
 
   recordingFailed(): Observable<string> {
     return this._recordingFailed.asObservable();
+  }
+
+  getLoading(): Observable<boolean> {
+    return this._loading.asObservable();
   }
 
   startRecording() {
@@ -89,17 +94,17 @@ export class AudioRecordingService {
   }
 
   stopRecording() {
+    this._loading.next(true);
 
     if (this.recorder) {
       this.recorder.stop((blob) => {
         if (this.startTime) {
-          // const mp3Name = encodeURIComponent('pepe_' + new Date().getTime() + '.mp3');
-          const mp3Name = encodeURIComponent('pepe_.mp3');
+          const mp3Name = encodeURIComponent('ferney_' + new Date().getTime() + '.mp3');
           this.stopMedia();
           this._recorded.next({ blob, title: mp3Name });
           console.log('blob: ', blob);
 
-          this.addPhoto('http://34.206.72.191:5000/train', blob)
+          this.addPhoto('http://34.206.72.191:5000/train', blob, mp3Name)
             .subscribe(
               event => {
                 if (event.type == HttpEventType.UploadProgress) {
@@ -111,6 +116,9 @@ export class AudioRecordingService {
               },
               (err) => {
                 console.log('Upload Error:', err);
+                if (err.status === 200) {
+                  this._loading.next(false);
+                }
               }, () => {
                 console.log('Upload done');
               }
@@ -123,13 +131,15 @@ export class AudioRecordingService {
     }
   }
 
-  private addPhoto(url: string, file: File): Observable<HttpEvent<any>> {
+  private addPhoto(url: string, file: File, mp3Name: string): Observable<HttpEvent<any>> {
 
-    // const formData = new FormData();
-    // formData.append('blob', file, 'pepe_2.mp3');
+    const formData = new FormData();
+    formData.append('file', file, mp3Name);
+    // formData.append('blob', file);
 
-    const fileOfBlob = new File([file], 'pepe_2.mp3');
+    // const fileOfBlob = new File([file], 'pepe_2.mp3');
     // formData.append('upload', fileOfBlob);
+
 
     const params = new HttpParams();
 
@@ -138,7 +148,8 @@ export class AudioRecordingService {
       reportProgress: true,
     };
 
-    const req = new HttpRequest('POST', url, fileOfBlob, options);
+    const req = new HttpRequest('POST', url, formData, options);
+    console.log('req: ', req);
     return this.http.request(req);
   }
 

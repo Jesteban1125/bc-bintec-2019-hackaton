@@ -1,13 +1,51 @@
 .container {
+  height: 100%;
+}
+.header {
+  background-color: #073d80;
+  div img:first-child {
+    height: 60px;
+  }
+  img:last-child {
+    height: 30px;
+  }
+}
+
+
+.title {
+  background-color: #fed200;
+}
+
+div.footer {
+  margin-top: auto;
+  img {
+    width: 100%;
+  }
+}
+.our_card {
+  width: 300px;
+  background-color: #efefef;
+  border-radius: 7px;
+  padding: 7px;
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+}
+
+.info-account {
+  div:last-child {
+    color: #808080;
+  }
+}
+
+.nunito {
   font-family: 'Nunito', 'Open Sans', 'Roboto', 'Helvetica Neue', sans-serif !important;
   text-align: center;
 }
 h2 {
-  padding: 2rem;
+  padding: 1.5rem;
   text-align: center;
 }
 p {
-  padding: 3rem;
+  padding: 2rem;
   text-align: center;
 }
 
@@ -16,10 +54,18 @@ p {
   width: 120px;
   height: 120px;
   border: none;
+  background: #083d7f;
+  color: #fff;
   .mat-icon {
     font-size: 4.3rem;
     display: initial;
   }
+}
+
+.voice-step {
+  bottom: 5rem;
+  position: absolute;
+  color: #083d7f;
 }
 
 // .start-button {
