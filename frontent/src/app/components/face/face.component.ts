@@ -46,6 +46,8 @@ export class FaceComponent implements OnInit {
   handleImage(webcamImage: WebcamImage): void {
     setTimeout(() => {
       console.log('received webcam image', webcamImage);
+      console.log(webcamImage.imageAsBase64)
+      console.log(webcamImage.imageAsDataUrl)
       this.webcamImage = webcamImage;
       this.picturesTaken[this.count] = true;
       console.log(this.picturesTaken);

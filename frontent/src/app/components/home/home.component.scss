@@ -1,0 +1,24 @@
+.container {
+  height: 100%;
+}
+.header {
+  div img:first-child {
+    height: 450px;
+  }
+}
+
+div.footer {
+  margin-top: auto;
+  img {
+    width: 100%;
+  }
+}
+button {
+  margin-inline-end: 20px;
+  background-color: #073d80 !important;
+  mat-icon {
+    font-size: 50px;
+    margin-block-start: -28px;
+    margin-inline-start: -25px;
+  }
+}

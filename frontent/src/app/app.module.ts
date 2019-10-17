@@ -23,6 +23,7 @@ import { CheckComponent } from './components/shared-payment/check/check.componen
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { CheckedComponent } from './components/face/checked/checked.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CheckedComponent } from './components/face/checked/checked.component';
     LockComponent,
     FloatButtonComponent,
     CheckComponent,
-    CheckedComponent
+    CheckedComponent,
+    MenuComponent
   ],
   imports: [
     MatButtonModule,
