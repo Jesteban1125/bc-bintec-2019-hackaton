@@ -1,0 +1,5 @@
+<mat-icon *ngIf="!isChecked;else checked" aria-hidden="false" aria-label="asdf">check_circle_outline</mat-icon>
+
+<ng-template #checked>
+		<mat-icon class="checked" aria-hidden="false" aria-label="hola">check_circle</mat-icon>
+</ng-template>

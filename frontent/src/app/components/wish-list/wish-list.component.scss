@@ -52,7 +52,59 @@
       width: 100%;
     }
   }
-  
+  .our_card {
+    width: 96%;
+    background-color: #efefef;
+    border-radius: 7px;
+    padding: 7px;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+  }
   .check {
     height: 1000px;
+  }
+  .info-account {
+    div:last-child {
+      color: #808080;
+      width: 100%;
+    }
+    
+    img{
+      width:180px ;
+      
+    }
+    .precio{
+      margin-top: -60px;
+      font-size: 25px;
+    }
+    .product{
+      margin-right: 20px;
+    }
+  }
+  .info-account2 {
+    div:last-child {
+      color: #808080;
+      width: 100%;
+    }
+    
+    img{
+      width:180px ;
+      height: 120px;
+      
+    }
+    .precio{
+      margin-top: -60px;
+      font-size: 25px;
+    }
+    .product{
+      margin-right: 20px;
+    }
+  }
+  mat-icon{
+    margin-top: 10%;
+    padding: 10px;
+    margin-left: 78%;
+    font-size: 60px;
+    color:  #073d80;
+    text-shadow: 2px 1px 5px rgb(129, 129, 129);
+
   }
