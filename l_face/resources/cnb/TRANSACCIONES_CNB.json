@@ -1,0 +1,117 @@
+{
+  "catalogName": "TRANSACCIONES_CNB",
+  "items": [
+    {
+      "codigo": "1",
+      "nombre": "Depósito en efectivo",
+      "tipo": "IN",
+      "limites": "1",
+      "reversos": "1"
+    },
+        {
+      "codigo": "2",
+      "nombre": "Reverso de Depósito en efectivo",
+      "tipo": "OUT",
+      "limites": "0",
+      "reversos": "0"
+    },
+    {
+      "codigo": "3",
+      "nombre": "Pago de servicios en efectivo",
+      "tipo": "IN",
+      "limites": "1",
+      "reversos": "1"
+    },
+        {
+      "codigo": "4",
+      "nombre": "Recarga de tiempo aire (Telered)",
+      "tipo": "IN",
+      "limites": "1",
+      "reversos": "1"
+    },
+        {
+      "codigo": "5",
+      "nombre": "Recarga de Metro Bus (Telered)",
+      "tipo": "IN",
+      "limites": "1",
+      "reversos": "1"
+    },
+        {
+      "codigo": "6",
+      "nombre": "Recarga de Panapass (Telered)",
+      "tipo": "IN",
+      "limites": "1",
+      "reversos": "1"
+    },
+        {
+      "codigo": "7",
+      "nombre": "Retiro de efectivo con Tarjeta débito",
+      "tipo": "OUT",
+      "limites": "1",
+      "reversos": "1"
+    },
+    {
+      "codigo": "8",
+      "nombre": "Pago de préstamo en efectivo",
+      "tipo": "IN",
+      "limites": "1",
+      "reversos": "1"
+    },
+        {
+      "codigo": "9",
+      "nombre": "Pago de Tarjeta de crédito en efectivo",
+      "tipo": "IN",
+      "limites": "1",
+      "reversos": "1"
+    },
+        {
+      "codigo": "10",
+      "nombre": "Retiro Nequi",
+      "tipo": "OUT",
+      "limites": "1",
+      "reversos": "1"
+    },
+        {
+      "codigo": "11",
+      "nombre": "Recarga en efectivo Nequi",
+      "tipo": "IN",
+      "limites": "1",
+      "reversos": "1"
+    },
+        {
+      "codigo": "12",
+      "nombre": "Pago de Tarjeta de Crédito con Tarjeta Débito",
+      "tipo": "N/A",
+      "limites": "1",
+      "reversos": "1"
+    },
+        {
+      "codigo": "13",
+      "nombre": "Pago de préstamo con Tarjeta Débito",
+      "tipo": "N/A",
+      "limites": "1",
+      "reversos": "1"
+    },
+    {
+      "codigo": "14",
+      "nombre": "Pago de servicios con tarjeta debito",
+      "tipo": "N/A",
+      "limites": "1",
+      "reversos": "1"
+    },
+    {
+      "codigo": "15",
+      "nombre": "Consulta de saldo",
+      "tipo": "N/A",
+      "limites": "0",
+      "reversos": "0"
+    },
+    {
+      "codigo": "16",
+      "nombre": "Reverso por Error Operativo",
+      "tipo": "DEP",
+      "limites": "1",
+      "reversos": "1"
+    }
+  ]
+}

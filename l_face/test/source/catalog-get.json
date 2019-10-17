@@ -1,0 +1,8 @@
+{
+    "catalogName": "GRANT_TYPES_TEST",
+    "items": [
+        {
+            "userServiceProvide": "ADM_USUARIOS"
+        }
+    ]
+}
