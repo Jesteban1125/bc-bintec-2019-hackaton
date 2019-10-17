@@ -1,1 +1,32 @@
-<p>login works!</p>
+<div class="container" fxLayout="column">
+    <div class="header" xFlex="100px" fxLayout="row" fxLayoutAlign="space-around center">
+        <div fxFlex="250px" fxLayout="row" fxLayoutAlign="end center">
+          <img fxFlex="150px" src="assets/images/login/logo.png" alt="logoBancolombia">
+        </div>
+        <img fxFlex="30px" src="assets/images/login/export.png" alt="logoBancolombia">
+    </div>
+    <div fxFlex="30px" fxLayout="row" fxLayoutAlign="center center">Bancolombia App Personas</div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <p fxFlex="300px">Si no tienes usuario ingresa tu documento de identidad.</p>
+    </div>
+    <div fxFlex="60px" class="user-input" fxLayout="row" fxLayoutAlign="center center">
+      <div fxFlex="300px" fxLayout="row" fxLayoutAlign="start center">
+        <img src="assets/images/login/man-user.png" alt="">
+        <input type="text" name="FirstName" value="" placeholder="Ingresa tu usuario">
+      </div>
+    </div>
+    <div class="btn-continuar" fxLayout="row"
+            fxLayoutAlign="center center" fxFlexOffset="15px">
+      <img [routerLink]="['/onboarding']" src="assets/images/login/btn-continuar.png" alt="">
+    </div>
+    <div class="btn-continuar" fxLayout="row"
+            fxLayoutAlign="center center" fxFlexOffset="10px">
+      <img src="assets/images/login/faceID.png" alt="">
+    </div>
+    <div class="footer" fxLayout="row" fxLayoutAlign="center center" fxFlexOffset="40px">
+      <img src="assets/images/login/banner.png" alt="">
+    </div>
+    <div class="footer" fxLayout="row" fxLayoutAlign="center center">
+      <img src="assets/images/login/footer.png" alt="">
+    </div>
+</div>

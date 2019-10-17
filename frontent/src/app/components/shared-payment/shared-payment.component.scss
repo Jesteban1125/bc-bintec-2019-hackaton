@@ -1,0 +1,66 @@
+.container {
+  height: 100%;
+}
+.header {
+  background-color: #073d80;
+  div img:first-child {
+    height: 60px;
+  }
+  img:last-child {
+    height: 30px;
+  }
+}
+
+.title {
+  background-color: #fed200;
+}
+button {
+  height: 50px;
+  width: 50px;
+  &.backArrow {
+    background-color: #053771;
+    mat-icon {
+      margin-inline-start: 4px;
+      margin-block-start: -19px;
+    }
+  }
+  &.camera {
+    background-color: #053771;
+    mat-icon {
+      margin-inline-start: -10px;
+      margin-block-start: -22px;
+    }
+  }
+  &.camera_take {
+    height: 90px;
+    width: 90px;
+    background-color: #053771;
+    mat-icon {
+      margin-inline-start: -25px;
+      margin-block-start: -27px;
+      font-size: 50px;
+    }
+  }
+}
+mat-icon {
+  font-size: 35px;
+}
+
+div.footer {
+  margin-top: auto;
+  img {
+    width: 100%;
+  }
+}
+.our_card {
+  width: 300px;
+  background-color: #efefef;
+  border-radius: 7px;
+  padding: 7px;
+}
+
+.info-account {
+  div:last-child {
+    color: #808080;
+  }
+}
