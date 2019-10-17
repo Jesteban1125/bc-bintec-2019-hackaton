@@ -1,0 +1,38 @@
+.container {
+  height: 100%;
+}
+
+.header {
+  background-color: #073d80;
+  div img:first-child {
+    height: 60px;
+  }
+  img:last-child {
+    height: 30px;
+  }
+}
+div.footer {
+  margin-top: auto;
+  img {
+    width: 100%;
+  }
+}
+.title {
+  background-color: #fed200;
+}
+
+
+button {
+  height: 50px;
+  width: 50px;
+  &.camera_take {
+    height: 60px;
+    width: 60px;
+    background-color: #053771;
+    mat-icon {
+      margin-inline-start: -15px;
+      margin-block-start: -19px;
+      font-size: 40px;
+    }
+  }
+}

@@ -1,1 +1,41 @@
-<p>face works!</p>
+<div fxLayout='column' class="container">
+  <div class="header" xFlex="100px" fxLayout="row" fxLayoutAlign="space-around center">
+    <div fxFlex="250px" fxLayout="row" fxLayoutAlign="center center">
+      <img fxFlex="150px" src="assets/images/login/logo.png" alt="logoBancolombia">
+    </div>
+  </div>
+  <div class="title" fxFlex="30px" fxLayout="row" fxLayoutAlign="center center">Registra tu rostro</div>
+  <div fxFlexOffset="10px" fxFlex="30px" fxLayout="row" fxLayoutAlign="center center">Mira fijamente</div>
+  <div fxLayout='column' *ngIf="isLessThanLimit; else checked" >
+    <webcam
+          fxFlexOffset="10px" fxLayout='column' fxLayoutAlign="center center"
+          [width]="350"
+          [trigger]="triggerObservable"
+          (imageCapture)="handleImage($event)"
+          (initError)="handleInitError($event)"
+          [allowCameraSwitch]="true"
+          [imageQuality]="1"></webcam>
+
+    <div fxLayout='row' fxLayoutAlign="space-around center" fxFlexOffset="30px">
+      <button class="camera_take" mat-fab aria-label="take picture"
+              (click)="triggerSnapshot()">
+        <mat-icon>photo_camera</mat-icon>
+      </button>
+    </div>
+    <!--  -->
+    <div fxFlexOffset="30px" fxLayout='row' fxLayoutAlign="space-around center">
+      <app-checked
+      *ngFor="let isTaken of picturesTaken"
+      [isChecked]="isTaken"></app-checked>
+    </div>
+
+  </div>
+
+  <ng-template #checked>
+      <app-check></app-check>
+  </ng-template>
+
+  <div class="footer" fxLayout="row" fxLayoutAlign="center center">
+      <img src="assets/images/login/footer_logos.png" alt="">
+    </div>
+</div>

@@ -43,9 +43,11 @@ export class SharedPaymentComponent implements OnInit {
   handleImage(webcamImage: WebcamImage): void {
     console.log('received webcam image', webcamImage);
     this.webcamImage = webcamImage;
-    this.isPictureTaken = true;
     this.faces = this.serviceFace.getFriends();
     console.log(this.faces);
+    setTimeout(() => {
+      this.isPictureTaken = true;
+    }, 1500);
   }
 
   navigateBack() {
