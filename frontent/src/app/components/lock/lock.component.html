@@ -1,1 +1,13 @@
-<p>lock works!</p>
+<div class="container image-bg">
+  <!-- <div class="box"> -->
+  <div class="box"fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="mic" (click)="changeRecording()">
+      <mat-icon>mic</mat-icon>
+    </div>
+    <div class="icon audio" *ngIf="isRecording">
+      <i></i>
+      <i></i>
+    </div>
+    <img class="icon" src="assets/images/lock/bc-icon.png" alt="">
+  </div>
+</div>

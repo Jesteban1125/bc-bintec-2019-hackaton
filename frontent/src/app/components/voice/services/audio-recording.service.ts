@@ -3,6 +3,7 @@ import * as RecordRTC from 'recordrtc';
 import * as moment from 'moment';
 import { Subject, Observable } from 'rxjs';
 import { HttpClient, HttpEvent, HttpParams, HttpRequest, HttpResponse, HttpEventType } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 interface RecordedAudioOutput {
@@ -22,6 +23,7 @@ export class AudioRecordingService {
   private _recordingTime = new Subject<string>();
   private _recordingFailed = new Subject<string>();
   private _loading = new Subject<boolean>();
+  private _responseCheckVoice = new Subject<string>();
 
   constructor(private http: HttpClient) { }
 
@@ -39,6 +41,10 @@ export class AudioRecordingService {
 
   getLoading(): Observable<boolean> {
     return this._loading.asObservable();
+  }
+
+  getResponseCheckVoice(): Observable<string> {
+    return this._responseCheckVoice.asObservable();
   }
 
   startRecording() {
@@ -93,41 +99,79 @@ export class AudioRecordingService {
     return val;
   }
 
-  stopRecording() {
-    this._loading.next(true);
+  stopRecording(type = 'train') {
+    if (type === 'train') {
+      this._loading.next(true);
 
-    if (this.recorder) {
-      this.recorder.stop((blob) => {
-        if (this.startTime) {
-          const mp3Name = encodeURIComponent('ferney_' + new Date().getTime() + '.mp3');
+      if (this.recorder) {
+        this.recorder.stop((blob) => {
+          if (this.startTime) {
+            // const mp3Name = encodeURIComponent('ferney_' + new Date().getTime() + '.mp3');
+            const mp3Name = encodeURIComponent(`${ environment.user }_${ new Date().getTime() }.mp3`);
+            this.stopMedia();
+            this._recorded.next({ blob, title: mp3Name });
+            console.log('blob: ', blob);
+
+            this.addPhoto('http://34.206.72.191:5000/train', blob, mp3Name)
+              .subscribe(
+                event => {
+                  if (event.type == HttpEventType.UploadProgress) {
+                    const percentDone = Math.round(100 * event.loaded / event.total);
+                    console.log(`File is ${percentDone}% loaded.`);
+                  } else if (event instanceof HttpResponse) {
+                    console.log('File is completely loaded!');
+                  }
+                },
+                (err) => {
+                  console.log('Upload Error:', err);
+                  if (err.status === 200) {
+                    this._loading.next(false);
+                  }
+                }, () => {
+                  console.log('Upload done');
+                }
+              );
+          }
+        }, () => {
           this.stopMedia();
-          this._recorded.next({ blob, title: mp3Name });
-          console.log('blob: ', blob);
+          this._recordingFailed.next();
+        });
+      }
+    } else {
+      if (this.recorder) {
+        this.recorder.stop((blob) => {
+          if (this.startTime) {
+            const mp3Name = encodeURIComponent('audio_to_validate.mp3');
+            this.stopMedia();
+            this._recorded.next({ blob, title: mp3Name });
+            console.log('blob: ', blob);
 
-          this.addPhoto('http://34.206.72.191:5000/train', blob, mp3Name)
-            .subscribe(
-              event => {
-                if (event.type == HttpEventType.UploadProgress) {
-                  const percentDone = Math.round(100 * event.loaded / event.total);
-                  console.log(`File is ${percentDone}% loaded.`);
-                } else if (event instanceof HttpResponse) {
-                  console.log('File is completely loaded!');
+            this.addPhoto('http://34.206.72.191:5000/recognition', blob, mp3Name)
+              .subscribe(
+                event => {
+                  if (event.type == HttpEventType.UploadProgress) {
+                    const percentDone = Math.round(100 * event.loaded / event.total);
+                    console.log(`File is ${percentDone}% loaded.`);
+                  } else if (event instanceof HttpResponse) {
+                    console.log('File is completely loaded!');
+                  }
+                },
+                (err) => {
+                  console.log('Upload Error:', err);
+                  if (err.status === 200) {
+                    this._loading.next(false);
+                    this._responseCheckVoice.next(err.error.text);
+                  }
+                }, () => {
+                  console.log('Upload done');
                 }
-              },
-              (err) => {
-                console.log('Upload Error:', err);
-                if (err.status === 200) {
-                  this._loading.next(false);
-                }
-              }, () => {
-                console.log('Upload done');
-              }
-            );
-        }
-      }, () => {
-        this.stopMedia();
-        this._recordingFailed.next();
-      });
+              );
+          }
+        }, () => {
+          this.stopMedia();
+          this._recordingFailed.next();
+        });
+      }
     }
   }
 

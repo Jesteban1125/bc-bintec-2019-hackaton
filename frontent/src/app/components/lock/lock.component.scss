@@ -1,0 +1,142 @@
+.image-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../../assets/images/lock/lock.PNG');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.box {
+  background: #2d2d2df5;
+  margin: 15rem 1rem 0 1rem;
+  min-height: 60px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.icon {
+  width: 32px;
+  margin-right: 14px;
+}
+
+.mic {
+  color: white;
+  padding-left: 14px;
+  padding-top: 4px;
+}
+
+
+
+
+/* Audio */
+
+.audio {
+  color: #F78D72;
+  position: sticky;
+}
+
+.audio::after,
+.audio i,
+.audio i::before,
+.audio i::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 0.25em;
+  height: 0.5em;
+  transform: translate(-50%,-50%);
+  background: currentColor;
+  border-radius: 0.125em;
+}
+
+.audio::after { animation: audio4 1.35s infinite; }
+
+.audio i::before {
+  left: -0.8125em;
+  animation: audio1 1.55s infinite;
+}
+.audio i::after {
+  left: 1.0625em;
+  animation: audio3 1.55s infinite;
+}
+
+.audio i:first-child {
+  margin-left: -1.875em;
+  animation: audio2 1.55s infinite;
+}
+
+.audio i:last-child {
+  margin-left: 1.875em;
+  animation: audio6 1.55s infinite;
+}
+
+.audio i:last-child::before { animation: audio5 1.55s infinite; }
+
+.audio i:last-child::after { animation: audio7 1.55s infinite; }
+
+@keyframes audio1 {
+  9% { height: 0.875em; }
+  36% { height: 0.25em; }
+  42% { height: 0.6875em; }
+  69% { height: 0.25em; }
+  76% { height: 1.3125em; }
+  100% { height: 0.5em; }
+}
+
+@keyframes audio2 {
+  9% { height: 1.75em; }
+  36% { height: 0.25em; }
+  42% { height: 1.75em; }
+  69% { height: 0.25em; }
+  76% { height: 2.375em; }
+  100% { height: 0.5em; }
+}
+
+@keyframes audio3 {
+  9% { height: 2.25em; }
+  36% { height: 0.25em; }
+  42% { height: 1.75em; }
+  69% { height: 0.25em; }
+  76% { height: 1.25em; }
+  100% { height: 0.5em; }
+}
+
+@keyframes audio4 {
+  9% { height: 0.9375em; }
+  36% { height: 0.25em; }
+  42% { height: 1.375em; }
+  69% { height: 0.25em; }
+  76% { height: 1.8125em; }
+  100% { height: 0.5em; }
+}
+
+@keyframes audio5 {
+  9% { height: 1.5em; }
+  36% { height: 0.25em; }
+  42% { height: 0.625em; }
+  69% { height: 0.25em; }
+  76% { height: 1.375em; }
+  100% { height: 0.5em; }
+}
+
+@keyframes audio6 {
+  9% { height: 2.0625em; }
+  36% { height: 0.25em; }
+  42% { height: 2.4375em; }
+  69% { height: 0.25em; }
+  76% { height: 0.75em; }
+  100% { height: 0.5em; }
+}
+
+@keyframes audio7 {
+  9% { height: 1.0625em; }
+  36% { height: 0.25em; }
+  42% { height: 0.9375em; }
+  69% { height: 0.25em; }
+  76% { height: 1.375em; }
+  100% { height: 0.5em; }
+}
