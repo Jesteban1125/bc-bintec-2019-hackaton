@@ -1,0 +1,17 @@
+{
+  "catalogName": "TIPOS_DOCUMENTO",
+  "items": [
+   {
+     "code":"R",
+     "name":"RUC"
+   },
+   {
+     "code":"CC",
+     "name":"Cédula"
+   },
+   {
+     "code":"P",
+     "name":"Pasaporte"
+   }
+  ]
+}

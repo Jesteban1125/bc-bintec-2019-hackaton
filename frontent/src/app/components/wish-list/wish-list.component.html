@@ -1,15 +1,59 @@
 <div fxLayout='column' class="container">
-    <header xFlex="100px" fxLayout="row" fxLayoutAlign="space-around center">
-        <div fxFlex="250px" fxLayout="row" fxLayoutAlign="end center">
-          <img fxFlex="150px" src="assets/images/login/logo.png" alt="logoBancolombia">
+  <header xFlex="100px" fxLayout="row" fxLayoutAlign="space-around center">
+    <div fxFlex="250px" fxLayout="row" fxLayoutAlign="end center">
+      <img fxFlex="150px" src="assets/images/login/logo.png" alt="logoBancolombia">
+    </div>
+    <img fxFlex="30px" src="assets/images/login/export.png" alt="logoBancolombia">
+  </header>
+  <div class="title" fxFlex="30px" fxLayout="row" fxLayoutAlign="center center">Lista de Deseos</div>
+  <main>
+    <div fxLayout='column' fxLayoutAlign="space-around center">
+      <div fxLayout='column' fxFlex="170px" fxFlexOffset="20px" class="our_card">
+        <div class="info-account" fxLayout='row' fxLayoutAlign="space-betwen center">
+          <div fxLayout="row">
+            <img src="../../../assets/images/wishList/mac.jpeg" alt="">
+          </div>
+          <div fxLayout='column' fxFlexOffset="20px" class="precio" fxLayoutAlign="right">
+            <div fxLayout='row' fxFlexOffset="20px" class="product">
+              iMac
+            </div>
+            <div fxLayout='row' fxLayoutAlign="center" fxFlexOffset="20px">
+              $5,400,000
+            </div>
+          </div>
         </div>
-        <img fxFlex="30px" src="assets/images/login/export.png" alt="logoBancolombia">
-    </header>
-    <div class="title" fxFlex="30px" fxLayout="row" fxLayoutAlign="center center">Lista de Deseos</div>
-    <main>
         
-    </main>
-    <footer fxLayout="row" fxLayoutAlign="center center">
-        <img src="assets/images/login/footer_logos.png" alt="">
-    </footer>
-  </div>
+        <mat-progress-bar fxFlexOffset="10px" fxFlex="20px" fxLayout='row' mode="determinate" value="70">
+        </mat-progress-bar>
+      </div>
+    </div>
+
+    <div fxLayout='column' fxLayoutAlign="space-around center">
+        <div fxLayout='column' fxFlex="170px" fxFlexOffset="20px" class="our_card">
+          <div class="info-account2" fxLayout='row' fxLayoutAlign="space-betwen center">
+            <div fxLayout="row">
+              <img src="../../../assets/images/wishList/casa.png" alt="">
+            </div>
+            <div fxLayout='column' fxFlexOffset="20px" class="precio" fxLayoutAlign="right">
+              <div fxLayout='row' fxFlexOffset="20px" class="product">
+                Casa
+              </div>
+              <div fxLayout='row' fxLayoutAlign="center" fxFlexOffset="2px">
+                $225,400,000
+              </div>
+            </div>
+          </div>
+          
+          <mat-progress-bar fxFlexOffset="10px" fxFlex="20px" fxLayout='row' mode="determinate" value="10">
+          </mat-progress-bar>
+        </div>
+
+      </div>
+     
+          <mat-icon > add_circle</mat-icon>
+     
+  </main>
+  <footer fxLayout="row" fxLayoutAlign="center center">
+    <img src="assets/images/login/footer_logos.png" alt="">
+  </footer>
+</div>

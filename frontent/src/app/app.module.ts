@@ -20,7 +20,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { CheckComponent } from './components/shared-payment/check/check.component';
-import { MatCardModule } from '@angular/material/card';
+import {MatCardModule} from '@angular/material/card';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { CheckedComponent } from './components/face/checked/checked.component';
 
 @NgModule({
   declarations: [
@@ -34,10 +36,12 @@ import { MatCardModule } from '@angular/material/card';
     WishListComponent,
     LockComponent,
     FloatButtonComponent,
-    CheckComponent
+    CheckComponent,
+    CheckedComponent
   ],
   imports: [
     MatButtonModule,
+    MatProgressBarModule,
     MatCardModule,
     WebcamModule,
     BrowserModule,
