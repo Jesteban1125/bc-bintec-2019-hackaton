@@ -8,6 +8,7 @@ import { OnboardingComponent } from './components/onboarding/onboarding.componen
 import { SharedPaymentComponent } from './components/shared-payment/shared-payment.component';
 import { VoiceComponent } from './components/voice/voice.component';
 import { WishListComponent } from './components/wish-list/wish-list.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'shared-payment', component: SharedPaymentComponent },
   { path: 'voice', component: VoiceComponent },
   { path: 'wish-list', component: WishListComponent },
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  { path: 'menu', component: MenuComponent }
+  // { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -25,6 +25,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { CheckedComponent } from './components/face/checked/checked.component';
 import { FormsModule } from '@angular/forms';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FormsModule } from '@angular/forms';
     LockComponent,
     FloatButtonComponent,
     CheckComponent,
-    CheckedComponent
+    CheckedComponent,
+    MenuComponent
   ],
   imports: [
     MatButtonModule,
