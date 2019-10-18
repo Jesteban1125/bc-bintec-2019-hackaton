@@ -12,7 +12,7 @@
     <div fxFlex="60px" class="user-input" fxLayout="row" fxLayoutAlign="center center">
       <div fxFlex="300px" fxLayout="row" fxLayoutAlign="start center">
         <img src="assets/images/login/man-user.png" alt="">
-        <input type="text" name="FirstName" value="" placeholder="Ingresa tu usuario">
+        <input type="text" [(ngModel)]="username" name="username" (input)="changeUsername($event.target.value)" placeholder="Ingresa tu usuario">
       </div>
     </div>
     <div class="btn-continuar" fxLayout="row"

@@ -3,7 +3,7 @@ import * as RecordRTC from 'recordrtc';
 import * as moment from 'moment';
 import { Subject, Observable } from 'rxjs';
 import { HttpClient, HttpEvent, HttpParams, HttpRequest, HttpResponse, HttpEventType } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { GeneralService } from 'src/app/services/general.service';
 
 
 interface RecordedAudioOutput {
@@ -25,7 +25,7 @@ export class AudioRecordingService {
   private _loading = new Subject<boolean>();
   private _responseCheckVoice = new Subject<string>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private generalService: GeneralService) { }
 
   getRecordedBlob(): Observable<RecordedAudioOutput> {
     return this._recorded.asObservable();
@@ -107,7 +107,7 @@ export class AudioRecordingService {
         this.recorder.stop((blob) => {
           if (this.startTime) {
             // const mp3Name = encodeURIComponent('ferney_' + new Date().getTime() + '.mp3');
-            const mp3Name = encodeURIComponent(`${ environment.user }_${ new Date().getTime() }.mp3`);
+            const mp3Name = encodeURIComponent(`${ this.generalService.user }_${ new Date().getTime() }.mp3`);
             this.stopMedia();
             this._recorded.next({ blob, title: mp3Name });
             console.log('blob: ', blob);

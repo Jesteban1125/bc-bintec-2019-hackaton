@@ -2,11 +2,9 @@ import { Subject } from 'rxjs/internal/Subject';
 import { Component, OnInit } from '@angular/core';
 import { WebcamUtil, WebcamImage, WebcamInitError } from 'ngx-webcam';
 import { Observable } from 'rxjs/internal/Observable';
-import { delay } from 'q';
-import { del } from 'selenium-webdriver/http';
 import { FaceService } from './services/face.service';
-import { environment } from 'src/environments/environment';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
   selector: 'app-face',
@@ -23,7 +21,7 @@ export class FaceComponent implements OnInit {
   private count = 0;
   public isLessThanLimit = true;
 
-  constructor(private _faceService: FaceService) { }
+  constructor(private _faceService: FaceService, private generalService: GeneralService) { }
 
   ngOnInit() {
     WebcamUtil.getAvailableVideoInputs()
@@ -53,7 +51,7 @@ export class FaceComponent implements OnInit {
 
       console.log('blob: ', blob);
 
-      this._faceService.addPhoto('http://34.206.72.191:5000/ftrain', blob, environment.user)
+      this._faceService.addPhoto('http://34.206.72.191:5000/ftrain', blob, this.generalService.user)
         .subscribe(
           event => {
             if (event.type == HttpEventType.UploadProgress) {
@@ -77,7 +75,7 @@ export class FaceComponent implements OnInit {
       //   .then(res => {
       //     const asd = res.blob();
       //     console.log(asd);
-      //     this._faceService.addPhoto('http://34.206.72.191:5000/ftrain', asd, `${environment.user}_${new Date().getTime()}.jpg`)
+      //     this._faceService.addPhoto('http://34.206.72.191:5000/ftrain', asd, `${ this.generalService.user}_${new Date().getTime()}.jpg`)
       //       .subscribe(
       //         event => {
       //           if (event.type == HttpEventType.UploadProgress) {

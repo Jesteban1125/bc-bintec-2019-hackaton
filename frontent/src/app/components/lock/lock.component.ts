@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 import { AudioRecordingService } from '../voice/services/audio-recording.service';
-import { environment } from 'src/environments/environment';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
   selector: 'app-lock',
@@ -22,7 +22,7 @@ export class LockComponent implements OnInit, OnDestroy {
 
   count = 0;
 
-  constructor(private audioRecordingService: AudioRecordingService) {
+  constructor(private audioRecordingService: AudioRecordingService, private generalService: GeneralService) {
     this.audioRecordingService.recordingFailed().subscribe(() => {
       this.isRecording = false;
     });
@@ -75,7 +75,7 @@ export class LockComponent implements OnInit, OnDestroy {
         case 3:
           this.stopRecording();
           this.a3validando.play();
-          this.count = 0;
+          this.count = 1;
           break;
       }
     } else {
@@ -87,7 +87,7 @@ export class LockComponent implements OnInit, OnDestroy {
 
   validateVoice(user) {
     console.log('USER: ', user);
-    if (user === environment.user) {
+    if (user === this.generalService.user) {
       this.a4exito.play();
     } else {
       this.a5fallo.play();

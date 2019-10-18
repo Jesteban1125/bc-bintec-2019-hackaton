@@ -20,8 +20,8 @@ const routes: Routes = [
   { path: 'shared-payment', component: SharedPaymentComponent },
   { path: 'voice', component: VoiceComponent },
   { path: 'wish-list', component: WishListComponent },
-  { path: 'menu', component: MenuComponent }
-  // { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  { path: 'menu', component: MenuComponent },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({
