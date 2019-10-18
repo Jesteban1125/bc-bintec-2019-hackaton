@@ -18,10 +18,5 @@ phases:
       - ng build
   post_build:
      commands:
-      - aws s3 cp dist s3://compile-wepay --recursive
+      - aws s3 cp dist/ojoBancolombia s3://wepay-darwin --recursive --acl public-read-write
       - echo Build completed on `date`
-artifacts:
-  files:
-      - '**/*'
-  base-directory: 'dist*'
-  discard-paths: yes
