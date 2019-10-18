@@ -15,7 +15,13 @@
           [allowCameraSwitch]="true"
           [imageQuality]="1"></webcam>
 
-    <div fxLayout='row' fxLayoutAlign="space-around center" fxFlexOffset="100px">
+    <form class="form-value">
+      <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="totalValue" name="totalValue"/>
+      </mat-form-field>
+    </form>
+
+    <div fxLayout='row' fxLayoutAlign="space-around center" fxFlexOffset="30px">
       <button class="backArrow" mat-fab aria-label="back button">
         <mat-icon>arrow_back_ios</mat-icon>
       </button>
@@ -28,15 +34,16 @@
       </button>
     </div>
   </div>
+
   <ng-template #checked>
     <div>
       <app-check></app-check>
       <div  fxLayout='column' fxLayoutAlign="space-around center">
-        <div fxLayout='row' fxFlex="50px" fxFlexOffset="20px" fxLayoutAlign="space-between center" 
+        <div fxLayout='row' fxFlex="50px" fxFlexOffset="20px" fxLayoutAlign="space-between center"
                 class="our_card" *ngFor="let face of faces">
           <div class="info-account" fxLayout='column'>
             <div>{{face.name}}</div>
-            <div>{{face.date}}</div>
+            <div>{{face.date | date: 'dd/MM/yyyy'}}</div>
           </div>
           <div>{{face.value | currency}}</div>
         </div>

@@ -4,6 +4,9 @@ import { WebcamUtil, WebcamImage, WebcamInitError } from 'ngx-webcam';
 import { Observable } from 'rxjs/internal/Observable';
 import { delay } from 'q';
 import { del } from 'selenium-webdriver/http';
+import { FaceService } from './services/face.service';
+import { environment } from 'src/environments/environment';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-face',
@@ -20,7 +23,7 @@ export class FaceComponent implements OnInit {
   private count = 0;
   public isLessThanLimit = true;
 
-  constructor() { }
+  constructor(private _faceService: FaceService) { }
 
   ngOnInit() {
     WebcamUtil.getAvailableVideoInputs()
@@ -44,8 +47,57 @@ export class FaceComponent implements OnInit {
     return this.trigger.asObservable();
   }
   handleImage(webcamImage: WebcamImage): void {
-    setTimeout(() => {
+    setTimeout(async () => {
       console.log('received webcam image', webcamImage);
+      const blob = await fetch(webcamImage.imageAsDataUrl).then(res => res.blob());
+
+      console.log('blob: ', blob);
+
+      this._faceService.addPhoto('http://34.206.72.191:5000/ftrain', blob, environment.user)
+        .subscribe(
+          event => {
+            if (event.type == HttpEventType.UploadProgress) {
+              const percentDone = Math.round(100 * event.loaded / event.total);
+              console.log(`File is ${percentDone}% loaded.`);
+            } else if (event instanceof HttpResponse) {
+              console.log('File is completely loaded!');
+            }
+          },
+          (err) => {
+            console.log('Upload Error:', err);
+            if (err.status === 200) {
+              // this._loading.next(false);
+            }
+          }, () => {
+            console.log('Upload done');
+          }
+        );
+
+      // fetch(webcamImage.imageAsDataUrl)
+      //   .then(res => {
+      //     const asd = res.blob();
+      //     console.log(asd);
+      //     this._faceService.addPhoto('http://34.206.72.191:5000/ftrain', asd, `${environment.user}_${new Date().getTime()}.jpg`)
+      //       .subscribe(
+      //         event => {
+      //           if (event.type == HttpEventType.UploadProgress) {
+      //             const percentDone = Math.round(100 * event.loaded / event.total);
+      //             console.log(`File is ${percentDone}% loaded.`);
+      //           } else if (event instanceof HttpResponse) {
+      //             console.log('File is completely loaded!');
+      //           }
+      //         },
+      //         (err) => {
+      //           console.log('Upload Error:', err);
+      //           if (err.status === 200) {
+      //             // this._loading.next(false);
+      //           }
+      //         }, () => {
+      //           console.log('Upload done');
+      //         }
+      //       );
+      //   }
+      // );
       this.webcamImage = webcamImage;
       this.picturesTaken[this.count] = true;
       console.log(this.picturesTaken);

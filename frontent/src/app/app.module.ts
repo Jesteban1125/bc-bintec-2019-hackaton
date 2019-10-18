@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { WebcamModule } from 'ngx-webcam';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +24,7 @@ import { CheckComponent } from './components/shared-payment/check/check.componen
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { CheckedComponent } from './components/face/checked/checked.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { CheckedComponent } from './components/face/checked/checked.component';
     FlexLayoutModule,
     MatStepperModule,
     MatIconModule,
+    MatInputModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],
