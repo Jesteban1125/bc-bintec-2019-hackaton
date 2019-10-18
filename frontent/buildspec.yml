@@ -8,20 +8,16 @@ phases:
       nodejs: 10
   pre_build:
     commands:
-      - frontent
+      - cd frontent
       - echo Installing source NPM dependencies...
       - npm install
       - npm install -g @angular/cli
   build:
     commands:
       - echo Build started on `date`
-      - ng build
+      - ng build --prod
   post_build:
      commands:
-      - aws s3 cp dist s3://compile-wepay --recursive
+      - aws s3 rm s3://wepay-darwin --recursive
+      - aws s3 cp dist/ojoBancolombia s3://wepay-darwin --recursive --acl public-read-write
       - echo Build completed on `date`
-artifacts:
-  files:
-      - '**/*'
-  base-directory: 'dist*'
-  discard-paths: yes
