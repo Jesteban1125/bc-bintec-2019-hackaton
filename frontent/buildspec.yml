@@ -15,8 +15,9 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - ng build
+      - ng build --prod
   post_build:
      commands:
+      - aws s3 rm s3://wepay-darwin --recursive
       - aws s3 cp dist/ojoBancolombia s3://wepay-darwin --recursive --acl public-read-write
       - echo Build completed on `date`
